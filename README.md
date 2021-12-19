@@ -24,7 +24,7 @@
 
 ## Features
 
-- **Small Executable:** Get started quickly with a `wget` to your target machine.
+- **Small Executable:** Get started quickly with a `curl` fetch to your target machine.
 - **Fast:** Performs all session commands including logging, trace clearing, and filesystem operations in under 5 milliseconds.
 - **Reconnaissance:** To save the state of system logs, `moonwalk` finds a world-writable path and saves the session under a dot directory which is removed upon ending the session.
 - **Shell History:** Instead of clearing the whole history file, `moonwalk` reverts it back to how it was including the invokation of `moonwalk`.
@@ -33,7 +33,7 @@
 ## Installation
 
 ```
-$ wget <GITHUB_RELEASE_URL>
+$ curl -L https://github.com/mufeedvh/moonwalk/releases/download/v1.0.0/moonwalk_linux -o moonwalk
 ```
 
 **OR**
