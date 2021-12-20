@@ -36,6 +36,8 @@
 $ curl -L https://github.com/mufeedvh/moonwalk/releases/download/v1.0.0/moonwalk_linux -o moonwalk
 ```
 
+(`AMD x86-64`)
+
 **OR**
 
 Download the executable from [**Releases**](https://github.com/mufeedvh/moonwalk/releases) OR Install with `cargo`:
