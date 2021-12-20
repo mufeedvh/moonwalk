@@ -34,6 +34,7 @@
 
 ```
 $ curl -L https://github.com/mufeedvh/moonwalk/releases/download/v1.0.0/moonwalk_linux -o moonwalk
+$ moonwalk
 ```
 
 (`AMD x86-64`)
