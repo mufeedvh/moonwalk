@@ -29,9 +29,11 @@ pub fn clear_me_from_history() -> Result<()> {
         let mut write_buffer = String::new();
 
         if FileSystem::file_exists(&file_path) {
-            let file_contents = String::from_utf8(
-                FileSystem::read(&file_path)?
-            ).unwrap();
+            let history_file_bytes = FileSystem::read(&file_path)?;
+            
+            let file_contents = String::from_utf8_lossy(
+                &history_file_bytes
+            );
     
             for line in file_contents.lines() {
                 let condition = line.contains("moonwalk") || line.contains("MOONWALK");
