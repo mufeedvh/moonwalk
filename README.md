@@ -100,7 +100,7 @@ Ways to contribute:
 
 ## License
 
-Licensed under the MIT License, see <a href="https://github.com/mufeedvh/gisture/blob/master/LICENSE">LICENSE</a> for more information.
+Licensed under the MIT License, see <a href="https://github.com/mufeedvh/moonwalk/blob/master/LICENSE">LICENSE</a> for more information.
 
 ## Liked the project?
 Support the author by buying him a coffee!
