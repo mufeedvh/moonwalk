@@ -101,14 +101,3 @@ Ways to contribute:
 ## License
 
 Licensed under the MIT License, see <a href="https://github.com/mufeedvh/moonwalk/blob/master/LICENSE">LICENSE</a> for more information.
-
-## Liked the project?
-Support the author by buying him a coffee!
-
-<a href="https://www.buymeacoffee.com/mufeedvh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="51px" width="217px"></a>
-
-----
-
-***Support this project by starring ⭐, sharing 📲, and contributing 👩‍💻! :heart:***
-
-----
