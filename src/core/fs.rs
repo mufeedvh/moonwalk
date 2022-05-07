@@ -23,6 +23,7 @@ impl FileSystem {
     pub fn file_nix_stat(file_path: &str) -> FileStat {
         // return file stats from child process
         let child_process = Command::new("/bin/stat")
+	    .arg("--printf='%w\n%x\n%y'")
             .arg(file_path)
             .output()
             .expect("failed to execute child process");
