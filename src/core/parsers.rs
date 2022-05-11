@@ -6,13 +6,29 @@ use super::fs::FileStat;
 pub fn nix_timestamp_parser(
     timestamp_str: &str
 ) -> String {
-    timestamp_str[0..19]
-	.to_string()
-	.replace("-", "")
-	.replace(":", "")
-	.replace(" ", "")
-	.replace("'", "")
-}
+    let mut fmt_time = String::with_capacity(15);
+    let mut start_parse: bool = false;
+    let mut seek_colon: bool = false;
+
+    for c in timestamp_str.chars() {
+        if c == ' ' { start_parse = true }
+        if start_parse {
+            match c {
+                '-' | ' ' => (),
+                ':' => {
+                    if seek_colon {
+                        fmt_time.push('.')
+                    }
+                    seek_colon = true;
+                },
+                '.' => break,
+                _ => fmt_time.push(c)
+            }
+        }
+    }
+
+    fmt_time
+} // hehe
 
 /// Offloads the required fields from `stat` to parse timestamps
 #[inline]
@@ -21,20 +37,16 @@ pub fn nix_stat_parser(
 ) -> FileStat {
     let mut atime = String::with_capacity(15);
     let mut mtime = String::with_capacity(15);
-    let mut ctime = String::new();
+    let ctime = String::new();
 
-    // Each line contains one timestamp
-    let mut index = 0;
     for line in stream.lines() {
-	if index == 0 {
-            ctime = nix_timestamp_parser(line);
-	} else if index == 1 {
-	    mtime = nix_timestamp_parser(line);
-	} else if index == 2 {
-	    atime = nix_timestamp_parser(line);
-	}
-	index = index + 1;
+        if line.contains("Access") && !line.contains("Uid") {
+            atime = nix_timestamp_parser(line);
+        } else if line.contains("Modify") {
+            mtime = nix_timestamp_parser(line)
+        }
     }
+
     FileStat {
         atime,
         mtime,
