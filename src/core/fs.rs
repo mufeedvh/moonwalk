@@ -22,7 +22,7 @@ impl FileSystem {
     /// Returns stat info of files to parse access/modify timestamps
     pub fn file_nix_stat(file_path: &str) -> FileStat {
         // return file stats from child process
-        let child_process = Command::new("/bin/stat")
+        let child_process = Command::new("stat")
             .arg(file_path)
             .output()
             .expect("failed to execute child process");

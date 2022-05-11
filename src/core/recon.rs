@@ -4,7 +4,7 @@ use super::fs::FileSystem;
 
 /// Returns world-writable directories in the target machine
 pub fn return_wr_dir() -> String {
-    let child_process = Command::new("/bin/find")
+    let child_process = Command::new("find")
         .args(["/", "-maxdepth", "3", "-type", "d", "-perm", "-777"])
         .output()
         .expect("failed to execute child process");
