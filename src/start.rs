@@ -34,7 +34,7 @@ pub fn init() -> Result<()> {
                     let file_stats = FileSystem::file_nix_stat(filename);
 
                     let command = format!(
-                        "touch -a -d '{}' -m -d '{}' {}",
+                        "touch -a -t {} -m -t {} {}",
                         file_stats.atime,
                         file_stats.mtime,
                         filename
