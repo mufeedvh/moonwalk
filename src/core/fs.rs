@@ -22,17 +22,14 @@ impl FileSystem {
     /// Returns stat info of files to parse access/modify timestamps
     pub fn file_nix_stat(file_path: &str) -> FileStat {
         // return file stats from child process
-	let child_process = Command::new("/bin/stat")
-	    .arg("--printf='%w\n%x\n%y'")
+        let child_process = Command::new("stat")
             .arg(file_path)
             .output()
             .expect("failed to execute child process");
 
-	let stdout = String::from_utf8_lossy(&child_process.stdout);
-	// STDOUT is wrapped in single quotes, remove them and parse
-	// the output
+        // parse unix timestamp from fs stats
         nix_stat_parser(
-            stdout[1..stdout.len()-1].into()
+            String::from_utf8_lossy(&child_process.stdout)
         )
     }
 
@@ -41,8 +38,8 @@ impl FileSystem {
     pub fn change_file_timestamp(file_path: &str, stat: FileStat) {
         Command::new("/usr/bin/touch")
             .args([
-                "-a", "-d", &format!("'{}'", &stat.atime),
-                "-m", "-d", &format!("'{}'", &stat.mtime),
+                "-a", "-t", &stat.atime,
+                "-m", "-t", &stat.mtime,
                 file_path
             ])
             .output()
